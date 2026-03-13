@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import axios from "axios";
+import API from "../../api/axios";
 import { DollarSign, TrendingUp, ShoppingBag, Package } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
@@ -18,8 +18,8 @@ export function SalesHistory() {
 
     let isActive = true;
 
-    axios
-      .get(`http://localhost:5000/api/restaurants/owner/${ownerId}`)
+    API
+      .get(`/api/restaurants/owner/${ownerId}`)
       .then(async (res) => {
         if (!isActive || !res.data) {
           return;
@@ -27,8 +27,8 @@ export function SalesHistory() {
 
         setRestaurant(res.data);
 
-        const ordersRes = await axios.get(
-          `http://localhost:5000/api/orders/restaurant/${res.data._id}`
+        const ordersRes = await API.get(
+          `/api/orders/restaurant/${res.data._id}`
         );
 
         if (isActive) {

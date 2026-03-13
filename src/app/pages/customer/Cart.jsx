@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash2, Plus, Minus, ShoppingBag, MapPin, Smartphone, Wallet } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 
 import { Button } from "../../components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../../components/ui/card";
@@ -128,7 +128,7 @@ export function Cart() {
     try {
       const savedMethod = savedPaymentMethods.find((method) => method.id === selectedSavedPayment);
 
-      await axios.post("http://localhost:5000/api/orders", {
+      await API.post("/api/orders", {
         customerId: currentUser._id || currentUser.id,
         customerName: currentUser.name,
         customerEmail: currentUser.email,

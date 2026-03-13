@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { MessageSquare, Check, Search } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
@@ -137,8 +137,8 @@ export function Complaints() {
 
   useEffect(() => {
 
-    axios
-      .get("http://localhost:5000/api/complaints", {
+    API
+      .get("/api/complaints", {
         headers: {
           authorization: token
         }
@@ -176,8 +176,8 @@ export function Complaints() {
     }
 
     try {
-      const response = await axios.put(
-        `http://localhost:5000/api/complaints/${complaintId}/resolve`,
+      const response = await API.put(
+        `/api/complaints/${complaintId}/resolve`,
         { resolution },
         {
           headers: {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Package, CheckCircle, XCircle } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 import { Card, CardContent, CardHeader } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
@@ -30,8 +30,8 @@ export function OrderHistory() {
       return;
     }
 
-    axios
-      .get(`http://localhost:5000/api/orders/customer/${customerId}`)
+    API
+      .get(`/api/orders/customer/${customerId}`)
       .then((res) => {
         setOrders(res.data);
       })
@@ -61,8 +61,8 @@ export function OrderHistory() {
     }
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/complaints",
+      await API.post(
+        "/api/complaints",
         {
           orderId: order._id,
           customerId,

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import axios from "axios";
+import API from "../../api/axios";
 import { Card, CardContent } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Progress } from "../../components/ui/progress";
@@ -55,8 +55,8 @@ export function Orders() {
 
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/orders/customer/${customerId}`
+        const res = await API.get(
+          `/api/orders/customer/${customerId}`
         );
 
         setOrders(res.data);
@@ -83,7 +83,7 @@ export function Orders() {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/complaints", {
+      await API.post("/api/complaints", {
         orderId: order._id,
         customerId,
         customerName: currentUser?.name || "Customer",

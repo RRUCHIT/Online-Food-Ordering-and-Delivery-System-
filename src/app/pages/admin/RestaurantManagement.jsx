@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Plus, Edit, Trash2, Search, Star, CheckCircle, XCircle } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -47,7 +47,7 @@ export function RestaurantManagement() {
 
   const fetchRestaurants = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/restaurants?includeAll=true");
+      const res = await API.get("/api/restaurants?includeAll=true");
       setRestaurants(res.data);
     } catch (error) {
       console.log(error);
@@ -110,13 +110,13 @@ export function RestaurantManagement() {
 
     try {
       if (editingRestaurant) {
-        await axios.put(
-          `http://localhost:5000/api/restaurants/${editingRestaurant._id}`,
+        await API.put(
+          `/api/restaurants/${editingRestaurant._id}`,
           payload
         );
         toast.success("Restaurant updated successfully");
       } else {
-        await axios.post("http://localhost:5000/api/restaurants", payload);
+        await API.post("/api/restaurants", payload);
         toast.success("Restaurant added successfully");
       }
 
@@ -130,7 +130,7 @@ export function RestaurantManagement() {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/restaurants/${id}`);
+      await API.delete(`/api/restaurants/${id}`);
       toast.success("Restaurant removed");
       fetchRestaurants();
     } catch (error) {
@@ -141,7 +141,7 @@ export function RestaurantManagement() {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.patch(`http://localhost:5000/api/restaurants/${id}/status`, {
+      await API.patch(`/api/restaurants/${id}/status`, {
         status
       });
 

@@ -1,7 +1,7 @@
 import { Store, ShoppingBag, DollarSign, Users, TrendingUp } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../api/axios";
 
 export function AdminDashboard() {
 
@@ -13,24 +13,24 @@ export function AdminDashboard() {
 
   useEffect(() => {
 
-    axios
-      .get("http://localhost:5000/api/restaurants")
+    API
+      .get("/api/restaurants")
       .then((res) => {
         setRestaurants(res.data);
       })
       .catch((err) => console.log(err));
 
 
-    axios
-      .get("http://localhost:5000/api/orders")
+    API
+      .get("/api/orders")
       .then((res) => {
         setOrders(res.data);
       })
       .catch((err) => console.log(err));
 
 
-    axios
-      .get("http://localhost:5000/api/admin/revenue", {
+    API
+      .get("/api/admin/revenue", {
         headers: {
           authorization: token
         }

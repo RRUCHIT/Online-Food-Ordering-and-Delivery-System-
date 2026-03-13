@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Plus, Trash2, Search, Pencil } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -45,8 +45,8 @@ export function MenuManagement() {
 
     let isActive = true;
 
-    axios
-      .get(`http://localhost:5000/api/restaurants/owner/${ownerId}`)
+    API
+      .get(`/api/restaurants/owner/${ownerId}`)
       .then((res) => {
         if (!isActive) {
           return;
@@ -81,8 +81,8 @@ export function MenuManagement() {
 
     let isActive = true;
 
-    axios
-      .get(`http://localhost:5000/api/menu/${restaurant._id}`)
+    API
+      .get(`/api/menu/${restaurant._id}`)
       .then((res) => {
         if (isActive) {
           setMenuItems(res.data);
@@ -145,8 +145,8 @@ export function MenuManagement() {
 
     try {
       if (editingItem) {
-        const res = await axios.put(
-          `http://localhost:5000/api/menu/${editingItem._id}`,
+        const res = await API.put(
+          `/api/menu/${editingItem._id}`,
           payload
         );
 
@@ -155,7 +155,7 @@ export function MenuManagement() {
         );
         toast.success("Menu item updated");
       } else {
-        const res = await axios.post("http://localhost:5000/api/menu", payload);
+        const res = await API.post("/api/menu", payload);
 
         setMenuItems((prev) => [res.data, ...prev]);
         toast.success("Menu item added");
@@ -171,7 +171,7 @@ export function MenuManagement() {
 
   const deleteItem = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/menu/${id}`);
+      await API.delete(`/api/menu/${id}`);
       setMenuItems((prev) => prev.filter((item) => item._id !== id));
       toast.success("Item deleted");
     } catch (error) {

@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { format } from "date-fns";
 import { toast } from "sonner";
-import axios from "axios";
+import API from "../../api/axios";
 
 export function OrderManagement() {
   const [orders, setOrders] = useState([]);
@@ -20,8 +20,8 @@ export function OrderManagement() {
       return;
     }
 
-    axios
-      .get(`http://localhost:5000/api/restaurants/owner/${ownerId}`)
+    API
+      .get(`/api/restaurants/owner/${ownerId}`)
       .then((res) => {
         setRestaurant(res.data);
       })
@@ -37,8 +37,8 @@ export function OrderManagement() {
 
     const fetchOrders = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:5000/api/orders/restaurant/${restaurant._id}`
+        const res = await API.get(
+          `/api/orders/restaurant/${restaurant._id}`
         );
 
         setOrders(res.data);
@@ -55,8 +55,8 @@ export function OrderManagement() {
 
   const handleUpdateStatus = async (orderId, status) => {
     try {
-      const res = await axios.put(
-        `http://localhost:5000/api/orders/${orderId}/status`,
+      const res = await API.put(
+        `/api/orders/${orderId}/status`,
         { status }
       );
 

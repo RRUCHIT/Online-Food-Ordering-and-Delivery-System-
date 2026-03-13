@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Search, Eye, ShoppingBag } from "lucide-react";
-import axios from "axios";
+import API from "../../api/axios";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Badge } from "../../components/ui/badge";
@@ -16,8 +16,8 @@ export function OrderMonitoring() {
   const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/orders")
+    API
+      .get("/api/orders")
       .then((res) => {
         setOrders(res.data);
       })

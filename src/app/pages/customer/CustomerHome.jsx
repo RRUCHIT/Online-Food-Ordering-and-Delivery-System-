@@ -6,7 +6,7 @@ import { Card, CardContent, CardFooter, CardHeader } from "../../components/ui/c
 import { useApp } from "../../context/AppContext";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../api/axios";
 
 export function CustomerHome() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,8 +18,8 @@ export function CustomerHome() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/restaurants")
+    API
+      .get("/api/restaurants")
       .then((res) => {
         setRestaurants(res.data);
       });
@@ -30,8 +30,8 @@ export function CustomerHome() {
       return;
     }
 
-    axios
-      .get(`http://localhost:5000/api/menu/${selectedRestaurant._id}`)
+    API
+      .get(`/api/menu/${selectedRestaurant._id}`)
       .then((res) => {
         setMenuItems(res.data);
       });

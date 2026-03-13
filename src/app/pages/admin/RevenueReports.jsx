@@ -1,7 +1,7 @@
 import { DollarSign, TrendingUp, TrendingDown, PiggyBank } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
-import axios from "axios";
+import API from "../../api/axios";
 import { useEffect, useState } from "react";
 
 export function RevenueReports() {
@@ -16,8 +16,8 @@ export function RevenueReports() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/admin/revenue", {
+    API
+      .get("/api/admin/revenue", {
         headers: {
           authorization: token
         }
