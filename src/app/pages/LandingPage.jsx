@@ -412,7 +412,8 @@ export function LandingPage() {
             </div>
 
             <p className="text-sm text-slate-500 text-center md:text-left">
-              © {new Date().getFullYear()} FoodHub. All rights reserved.
+              © {new Date().getFullYear()} FoodHub. All rights reserved.<br></br>
+              Made By:- Ruchit Solanki | Kavan Patel
             </p>
 
             <div className="flex gap-4 text-sm text-slate-600">
