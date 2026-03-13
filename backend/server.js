@@ -17,7 +17,14 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "authorization"]
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/auth", authRoutes);
@@ -31,11 +38,13 @@ app.use("/api/complaints", complaintRoutes);
 // Set static folder
 app.use(express.static(path.join(__dirname, "../dist")));
 
-app.get("*", (req, res) => {
-  // If the request is for an API route, let it pass (though it should have been caught by the routes above)
+// Catch-all route to serve the frontend for any non-API request
+app.use((req, res) => {
+  // If the request is for an API route that wasn't handled, return 404
   if (req.path.startsWith("/api")) {
     return res.status(404).json({ message: "API route not found" });
   }
+  // Otherwise, serve the frontend index.html
   res.sendFile(path.resolve(__dirname, "../", "dist", "index.html"));
 });
 
