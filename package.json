@@ -7,7 +7,7 @@
     "build": "vite build",
     "dev": "vite",
     "install-all": "npm install && cd backend && npm install",
-    "start": "NODE_ENV=production node backend/server.js"
+    "start": "node backend/server.js"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

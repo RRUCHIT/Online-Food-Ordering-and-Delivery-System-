@@ -27,19 +27,17 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/complaints", complaintRoutes);
 
-// Serve Static Assets in Production
-if (process.env.NODE_ENV === "production") {
-  // Set static folder
-  app.use(express.static(path.join(__dirname, "../dist")));
+// Serve Static Assets
+// Set static folder
+app.use(express.static(path.join(__dirname, "../dist")));
 
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../", "dist", "index.html"));
-  });
-} else {
-  app.get("/", (req, res) => {
-    res.send("FoodHub API Running");
-  });
-}
+app.get("*", (req, res) => {
+  // If the request is for an API route, let it pass (though it should have been caught by the routes above)
+  if (req.path.startsWith("/api")) {
+    return res.status(404).json({ message: "API route not found" });
+  }
+  res.sendFile(path.resolve(__dirname, "../", "dist", "index.html"));
+});
 
 const PORT = process.env.PORT || 5000;
 
