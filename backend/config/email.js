@@ -1,8 +1,13 @@
 const nodemailer = require("nodemailer");
+const dns = require('dns');
+
+// Force Node.js to prefer IPv4 over IPv6 to prevent ENETUNREACH errors on cloud platforms like Render
+if (dns.setDefaultResultOrder) {
+  dns.setDefaultResultOrder('ipv4first');
+}
 
 const sendEmail = async (options) => {
   // Use port 587 with STARTTLS for better compatibility in cloud environments like Render
-  // Also force IPv4 to avoid ENETUNREACH errors with IPv6
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -11,11 +16,11 @@ const sendEmail = async (options) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
+    // Force IPv4 at the connection level
+    family: 4,
     tls: {
       // Do not fail on invalid certs
       rejectUnauthorized: false,
-      // Force IPv4
-      family: 4,
     },
     connectionTimeout: 10000,
     greetingTimeout: 10000,
