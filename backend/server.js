@@ -11,7 +11,10 @@ const restaurantRoutes = require("./routes/restaurantRoutes.js");
 const adminRoutes = require("./routes/adminRoutes.js");
 const menuRoutes = require("./routes/menuRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
+<<<<<<< HEAD
 const upload = require('./middleware/uploadMiddleware');
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 const path = require("path");
 
 const app = express();
@@ -34,6 +37,7 @@ app.use("/api/restaurants", restaurantRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/complaints", complaintRoutes);
+<<<<<<< HEAD
 // Simple upload route directly in server.js to ensure it's matched
 app.post("/api/upload", upload.single('image'), (req, res) => {
     try {
@@ -49,6 +53,8 @@ app.post("/api/upload", upload.single('image'), (req, res) => {
 
 // Serve static folder for uploads (MOVED AFTER API ROUTES)
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 
 // Serve Static Assets
 // Set static folder

@@ -167,7 +167,11 @@ export function Orders() {
                         >
                           <span>{item.quantity} x {item.name}</span>
                           <span className="font-medium">
+<<<<<<< HEAD
                             ₹{(item.price * item.quantity).toFixed(2)}
+=======
+                            ${(item.price * item.quantity).toFixed(2)}
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                           </span>
                         </div>
                       ))}
@@ -176,7 +180,11 @@ export function Orders() {
 
                   <div className="flex justify-between font-bold pt-3 border-t">
                     <span>Total</span>
+<<<<<<< HEAD
                     <span className="text-orange-500">₹{Number(order.total).toFixed(2)}</span>
+=======
+                    <span className="text-orange-500">${Number(order.total).toFixed(2)}</span>
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                   </div>
 
                   <Dialog>

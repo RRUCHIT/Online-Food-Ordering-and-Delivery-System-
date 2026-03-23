@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import API from "../../api/axios";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { IndianRupee, ShoppingBag, TrendingUp, Star } from "lucide-react";
+=======
+import { DollarSign, ShoppingBag, TrendingUp, Star } from "lucide-react";
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import { Card, CardContent } from "../../components/ui/card";
 
 export function RestaurantDashboard() {
@@ -70,8 +74,13 @@ export function RestaurantDashboard() {
     },
     {
       title: "Today's Revenue",
+<<<<<<< HEAD
       value: `₹${todayRevenue.toFixed(2)}`,
       icon: IndianRupee,
+=======
+      value: `$${todayRevenue.toFixed(2)}`,
+      icon: DollarSign,
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       color: "text-green-500",
       bgColor: "bg-green-100",
     },
@@ -155,7 +164,11 @@ export function RestaurantDashboard() {
 
                 <div className="text-right">
                   <p className="font-bold text-orange-500">
+<<<<<<< HEAD
                     ₹{Number(order.total).toFixed(2)}
+=======
+                    ${Number(order.total).toFixed(2)}
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                   </p>
 
                   <span className="text-sm text-gray-600">

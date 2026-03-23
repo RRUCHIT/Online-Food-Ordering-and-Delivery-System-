@@ -119,7 +119,11 @@ export function CustomerHome() {
           >
             <img
               src={restaurant.image || "https://placehold.co/600x400?text=Restaurant"}
+<<<<<<< HEAD
               className="h-48 w-full object-cover"
+=======
+            className="h-48 w-full object-cover"
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             />
 
             <CardHeader>
@@ -151,7 +155,11 @@ export function CustomerHome() {
 
                 <CardContent>
                   <p className="text-gray-600">{item.description}</p>
+<<<<<<< HEAD
                   <p className="font-bold text-rose-500 mt-2">₹{item.price}</p>
+=======
+                  <p className="font-bold text-rose-500 mt-2">${item.price}</p>
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                 </CardContent>
 
                 <CardFooter>

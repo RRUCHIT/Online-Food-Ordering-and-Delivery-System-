@@ -6,7 +6,10 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card, CardContent, CardFooter, CardHeader } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
+<<<<<<< HEAD
 import { ImageUpload } from "../../components/ui/image-upload";
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import {
   Dialog,
   DialogContent,
@@ -258,10 +261,19 @@ export function MenuManagement() {
               </div>
 
               <div>
+<<<<<<< HEAD
                 <ImageUpload
                   value={formData.image}
                   onChange={(url) => setFormData({ ...formData, image: url })}
                   label="Menu Image"
+=======
+                <Label>Image URL</Label>
+                <Input
+                  value={formData.image}
+                  onChange={(e) =>
+                    setFormData({ ...formData, image: e.target.value })
+                  }
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                 />
               </div>
             </div>
@@ -313,7 +325,11 @@ export function MenuManagement() {
             <CardContent className="space-y-2">
               <p className="text-gray-600">{item.description || "No description"}</p>
               <p className="text-orange-500 font-bold">
+<<<<<<< HEAD
                 ₹{Number(item.price).toFixed(2)}
+=======
+                ${Number(item.price).toFixed(2)}
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
               </p>
             </CardContent>
 

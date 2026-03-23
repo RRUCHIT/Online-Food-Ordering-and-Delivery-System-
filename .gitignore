@@ -1,16 +1,22 @@
 # Node.js
 node_modules/
+<<<<<<< HEAD
 backend/node_modules/
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .npm
 .eslintcache
 
+<<<<<<< HEAD
 # Uploads (local images)
 backend/uploads/
 uploads/
 
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 # Environment variables
 .env
 .env.local

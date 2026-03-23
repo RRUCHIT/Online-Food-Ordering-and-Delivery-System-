@@ -1,4 +1,5 @@
 const Menu = require("../models/Menu");
+<<<<<<< HEAD
 const fs = require('fs');
 const path = require('path');
 
@@ -10,6 +11,8 @@ const deleteFile = (imageUrl) => {
         fs.unlinkSync(filePath);
     }
 };
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 
 exports.getMenuByRestaurant = async (req, res) => {
   try {
@@ -37,11 +40,14 @@ exports.createMenuItem = async (req, res) => {
 
 exports.updateMenuItem = async (req, res) => {
   try {
+<<<<<<< HEAD
     const oldItem = await Menu.findById(req.params.id);
     if (oldItem && req.body.image && oldItem.image !== req.body.image) {
         deleteFile(oldItem.image);
     }
 
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
     const item = await Menu.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -56,10 +62,13 @@ exports.updateMenuItem = async (req, res) => {
 
 exports.deleteMenuItem = async (req, res) => {
   try {
+<<<<<<< HEAD
     const item = await Menu.findById(req.params.id);
     if (item && item.image) {
         deleteFile(item.image);
     }
+=======
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
     await Menu.findByIdAndDelete(req.params.id);
 
     res.json({ message: "Menu item deleted" });

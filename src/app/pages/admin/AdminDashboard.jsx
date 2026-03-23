@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Store,
   ShoppingBag,
@@ -7,6 +8,9 @@ import {
   Clock,
   CheckCircle,
 } from "lucide-react";
+=======
+import { Store, ShoppingBag, DollarSign, Users, TrendingUp } from "lucide-react";
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { useEffect, useState } from "react";
 import API from "../../api/axios";
@@ -77,8 +81,13 @@ export function AdminDashboard() {
 
     {
       title: "Platform Revenue",
+<<<<<<< HEAD
       value: `₹${revenue}`,
       icon: IndianRupee,
+=======
+      value: `$${revenue}`,
+      icon: DollarSign,
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       color: "text-purple-500",
       bgColor: "bg-purple-100",
       change: "15% platform fee",

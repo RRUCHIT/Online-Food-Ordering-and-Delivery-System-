@@ -141,7 +141,11 @@ export function OrderHistory() {
                           <p className="text-gray-600">Qty: {item.quantity}</p>
                         </div>
                         <span className="font-semibold">
+<<<<<<< HEAD
                           ₹{(item.price * item.quantity).toFixed(2)}
+=======
+                          ${(item.price * item.quantity).toFixed(2)}
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                         </span>
                       </div>
                     ))}
@@ -152,7 +156,11 @@ export function OrderHistory() {
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
                     <span className="text-orange-500">
+<<<<<<< HEAD
                       ₹{Number(order.total).toFixed(2)}
+=======
+                      ${Number(order.total).toFixed(2)}
+>>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                     </span>
                   </div>
                 </div>
