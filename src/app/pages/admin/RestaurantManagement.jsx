@@ -6,10 +6,7 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
 import { Card, CardContent, CardFooter, CardHeader } from "../../components/ui/card";
-<<<<<<< HEAD
 import { ImageUpload } from "../../components/ui/image-upload";
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import {
   Dialog,
   DialogContent,
@@ -265,19 +262,10 @@ export function RestaurantManagement() {
               </div>
 
               <div>
-<<<<<<< HEAD
                 <ImageUpload
                   value={formData.image}
                   onChange={(url) => setFormData({ ...formData, image: url })}
                   label="Restaurant Logo"
-=======
-                <Label>Image URL</Label>
-                <Input
-                  value={formData.image}
-                  onChange={(e) =>
-                    setFormData({ ...formData, image: e.target.value })
-                  }
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                 />
               </div>
             </div>
@@ -317,13 +305,10 @@ export function RestaurantManagement() {
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRestaurants.map((restaurant) => (
           <Card key={restaurant._id}>
-<<<<<<< HEAD
             <img
               src={restaurant.image || "https://placehold.co/600x400?text=Restaurant"}
               className="h-48 w-full object-cover rounded-t-xl"
             />
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             <CardHeader>
               <div className="flex justify-between gap-3">
                 <h3 className="font-bold text-xl">{restaurant.name}</h3>

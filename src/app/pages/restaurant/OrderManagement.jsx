@@ -127,22 +127,14 @@ export function OrderManagement() {
                 >
                   <span>{item.quantity}x {item.name}</span>
                   <span className="font-semibold">
-<<<<<<< HEAD
                     ₹{(item.price * item.quantity).toFixed(2)}
-=======
-                    ${(item.price * item.quantity).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                   </span>
                 </div>
               ))}
             </div>
             <div className="border-t mt-2 pt-2 flex justify-between font-bold">
               <span>Total</span>
-<<<<<<< HEAD
               <span className="text-orange-500">₹{Number(order.total).toFixed(2)}</span>
-=======
-              <span className="text-orange-500">${Number(order.total).toFixed(2)}</span>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             </div>
           </div>
 

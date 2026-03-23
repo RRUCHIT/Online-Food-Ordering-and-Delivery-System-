@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 import {
   TrendingUp,
   TrendingDown,
   IndianRupee,
   PiggyBank,
-  ChevronRight,
-  Download,
 } from "lucide-react";
-=======
-import { DollarSign, TrendingUp, TrendingDown, PiggyBank } from "lucide-react";
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../../components/ui/select";
 import API from "../../api/axios";
@@ -44,7 +38,6 @@ export function RevenueReports() {
   const statsCards = [
     {
       title: "Delivered Revenue",
-<<<<<<< HEAD
       value: `₹${stats.totalRevenue.toFixed(2)}`,
       change: "Delivered orders only",
       isPositive: true,
@@ -53,27 +46,13 @@ export function RevenueReports() {
     {
       title: "Admin Profit (15%)",
       value: `₹${(stats.platformProfit || stats.platformFee).toFixed(2)}`,
-=======
-      value: `$${stats.totalRevenue.toFixed(2)}`,
-      change: "Delivered orders only",
-      isPositive: true,
-      icon: DollarSign,
-    },
-    {
-      title: "Admin Profit (15%)",
-      value: `$${(stats.platformProfit || stats.platformFee).toFixed(2)}`,
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       change: "Taken after delivery",
       isPositive: true,
       icon: PiggyBank,
     },
     {
       title: "Restaurant Share",
-<<<<<<< HEAD
       value: `₹${stats.restaurantRevenue.toFixed(2)}`,
-=======
-      value: `$${stats.restaurantRevenue.toFixed(2)}`,
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       change: "Net after platform cut",
       isPositive: true,
       icon: TrendingUp,
@@ -149,20 +128,12 @@ export function RevenueReports() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Delivered Revenue</span>
-<<<<<<< HEAD
               <span className="font-semibold">₹{stats.totalRevenue.toFixed(2)}</span>
-=======
-              <span className="font-semibold">${stats.totalRevenue.toFixed(2)}</span>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Admin Profit</span>
               <span className="font-semibold text-emerald-600">
-<<<<<<< HEAD
                 ₹{(stats.platformProfit || stats.platformFee).toFixed(2)}
-=======
-                ${(stats.platformProfit || stats.platformFee).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
               </span>
             </div>
             <div className="rounded-2xl bg-emerald-50 border border-emerald-100 p-4 text-emerald-900">
@@ -183,19 +154,11 @@ export function RevenueReports() {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Restaurant Share</span>
-<<<<<<< HEAD
               <span className="font-semibold">₹{stats.restaurantRevenue.toFixed(2)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Admin Profit</span>
               <span className="font-semibold">₹{(stats.platformProfit || stats.platformFee).toFixed(2)}</span>
-=======
-              <span className="font-semibold">${stats.restaurantRevenue.toFixed(2)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-600">Admin Profit</span>
-              <span className="font-semibold">${(stats.platformProfit || stats.platformFee).toFixed(2)}</span>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             </div>
           </CardContent>
         </Card>

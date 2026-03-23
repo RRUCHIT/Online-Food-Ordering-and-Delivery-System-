@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import API from "../../api/axios";
-<<<<<<< HEAD
 import { IndianRupee, TrendingUp, ShoppingBag, Package } from "lucide-react";
-=======
-import { DollarSign, TrendingUp, ShoppingBag, Package } from "lucide-react";
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 import { Card, CardContent, CardHeader, CardTitle } from "../../components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../../components/ui/tabs";
 import { format } from "date-fns";
@@ -77,13 +73,8 @@ export function SalesHistory() {
   const stats = [
     {
       title: "Total Revenue",
-<<<<<<< HEAD
       value: `₹${totalRevenue.toFixed(2)}`,
       icon: IndianRupee,
-=======
-      value: `$${totalRevenue.toFixed(2)}`,
-      icon: DollarSign,
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       color: "text-green-500",
       bgColor: "bg-green-100",
     },
@@ -96,11 +87,7 @@ export function SalesHistory() {
     },
     {
       title: "Average Order Value",
-<<<<<<< HEAD
       value: `₹${averageOrderValue.toFixed(2)}`,
-=======
-      value: `$${averageOrderValue.toFixed(2)}`,
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
       icon: TrendingUp,
       color: "text-orange-500",
       bgColor: "bg-orange-100",
@@ -182,11 +169,7 @@ export function SalesHistory() {
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-green-500 text-lg">
-<<<<<<< HEAD
                           ₹{Number(order.total).toFixed(2)}
-=======
-                          ${Number(order.total).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                         </p>
                         <span className="inline-block px-2 py-1 text-xs rounded-full bg-green-100 text-green-700 mt-1">
                           Delivered
@@ -230,11 +213,7 @@ export function SalesHistory() {
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-green-500">
-<<<<<<< HEAD
                           ₹{data.revenue.toFixed(2)}
-=======
-                          ${data.revenue.toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                         </p>
                         <p className="text-xs text-gray-600">Total revenue</p>
                       </div>

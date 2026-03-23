@@ -1,5 +1,4 @@
 const Restaurant = require("../models/Restaurant");
-<<<<<<< HEAD
 const fs = require('fs');
 const path = require('path');
 
@@ -11,8 +10,6 @@ const deleteFile = (imageUrl) => {
         fs.unlinkSync(filePath);
     }
 };
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
 
 exports.getRestaurants = async (req, res) => {
   try {
@@ -51,14 +48,11 @@ exports.addRestaurant = async (req, res) => {
 
 exports.updateRestaurant = async (req, res) => {
   try {
-<<<<<<< HEAD
     const oldRestaurant = await Restaurant.findById(req.params.id);
     if (oldRestaurant && req.body.image && oldRestaurant.image !== req.body.image) {
         deleteFile(oldRestaurant.image);
     }
 
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
     const restaurant = await Restaurant.findByIdAndUpdate(
       req.params.id,
       req.body,
@@ -73,13 +67,10 @@ exports.updateRestaurant = async (req, res) => {
 
 exports.deleteRestaurant = async (req, res) => {
   try {
-<<<<<<< HEAD
     const restaurant = await Restaurant.findById(req.params.id);
     if (restaurant && restaurant.image) {
         deleteFile(restaurant.image);
     }
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
     await Restaurant.findByIdAndDelete(req.params.id);
 
     res.json({ message: "Restaurant deleted" });

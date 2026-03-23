@@ -206,11 +206,7 @@ export function Cart() {
                       <h3 className="font-bold text-lg">{item.name}</h3>
                       <p className="text-sm text-gray-600">{item.restaurantName}</p>
                       <p className="text-orange-500 font-semibold mt-1">
-<<<<<<< HEAD
                         ₹{Number(item.price).toFixed(2)}
-=======
-                        ${Number(item.price).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                       </p>
                     </div>
 
@@ -395,7 +391,6 @@ export function Cart() {
               <div className="space-y-2 text-sm">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-<<<<<<< HEAD
                   <span>₹{subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
@@ -405,26 +400,11 @@ export function Cart() {
                 <div className="flex justify-between">
                   <span>Tax</span>
                   <span>₹{tax.toFixed(2)}</span>
-=======
-                  <span>${subtotal.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Delivery Fee</span>
-                  <span>${deliveryFee.toFixed(2)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                 </div>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total</span>
-<<<<<<< HEAD
                   <span className="text-orange-500">₹{total.toFixed(2)}</span>
-=======
-                  <span className="text-orange-500">${total.toFixed(2)}</span>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                 </div>
               </div>
             </CardContent>

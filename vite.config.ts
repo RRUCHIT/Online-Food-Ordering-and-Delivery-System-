@@ -22,13 +22,10 @@ export default defineConfig({
         target: 'http://localhost:5000',
         changeOrigin: true,
       },
-<<<<<<< HEAD
       '/uploads': {
         target: 'http://localhost:5000',
         changeOrigin: true,
       },
-=======
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
     },
   },
 

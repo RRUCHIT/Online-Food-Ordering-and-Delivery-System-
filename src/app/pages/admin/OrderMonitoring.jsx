@@ -101,11 +101,7 @@ export function OrderMonitoring() {
             <div>
               <p className="text-sm text-gray-600">Total Amount</p>
               <p className="font-semibold text-green-500">
-<<<<<<< HEAD
                 ₹{Number(order.total).toFixed(2)}
-=======
-                ${Number(order.total).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
               </p>
             </div>
           </div>
@@ -132,11 +128,7 @@ export function OrderMonitoring() {
                     </div>
                   </div>
                   <p className="font-semibold">
-<<<<<<< HEAD
                     ₹{(item.price * item.quantity).toFixed(2)}
-=======
-                    ${(item.price * item.quantity).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                   </p>
                 </div>
               ))}
@@ -232,11 +224,7 @@ export function OrderMonitoring() {
                     <div>
                       <p className="text-sm text-gray-600">Amount</p>
                       <p className="font-semibold text-green-600">
-<<<<<<< HEAD
                         ₹{Number(order.total).toFixed(2)}
-=======
-                        ${Number(order.total).toFixed(2)}
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
                       </p>
                     </div>
                   </div>

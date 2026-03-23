@@ -140,11 +140,7 @@ export function CustomerLayout() {
               <p className="text-xs opacity-90">View cart and checkout</p>
             </div>
             <div className="text-right">
-<<<<<<< HEAD
               <p className="font-bold">₹{total.toFixed(2)}</p>
-=======
-              <p className="font-bold">${total.toFixed(2)}</p>
->>>>>>> 4cf86f5ca086441cb68307469e1c28b498815031
             </div>
           </div>
         </Link>
