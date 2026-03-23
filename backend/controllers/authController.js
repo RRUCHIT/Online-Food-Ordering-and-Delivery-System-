@@ -199,6 +199,7 @@ exports.forgotPassword = async (req, res) => {
 
     if (EMAIL_USER && EMAIL_PASS) {
       try {
+        console.log(`Attempting to send email to ${user.email}...`);
         await sendEmail({
           email: user.email,
           subject: "Password Reset OTP - FoodHub",
