@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Trash2, Plus, Minus, ShoppingBag, MapPin, Smartphone, Wallet } from "lucide-react";
+
 import API from "../../api/axios";
 
 import { Button } from "../../components/ui/button";
@@ -35,7 +36,6 @@ export function Cart() {
 
   const [deliveryType, setDeliveryType] = useState("address");
   const [deliveryAddress, setDeliveryAddress] = useState("");
-  const [liveLocation, setLiveLocation] = useState("");
   const [phone, setPhone] = useState("");
   const [notes, setNotes] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("cash_on_delivery");
@@ -103,11 +103,6 @@ export function Cart() {
       return;
     }
 
-    if (deliveryType === "live_location" && !liveLocation) {
-      toast.error("Enter live location or map link");
-      return;
-    }
-
     if (paymentMethod !== "cash_on_delivery" && !selectedSavedPayment) {
       toast.error("Select a saved payment method first", {
         description: "Add one in your profile if you have not saved UPI or card details yet."
@@ -138,8 +133,7 @@ export function Cart() {
         items: cart,
         total,
         deliveryType,
-        deliveryAddress: deliveryType === "address" ? deliveryAddress : "",
-        liveLocation: deliveryType === "live_location" ? liveLocation : "",
+        deliveryAddress: deliveryType === "address" ? deliveryAddress : "Live Location Order",
         paymentMethod,
         paymentDetails: savedMethod?.value || "",
         paymentStatus: paymentMethod === "cash_on_delivery" ? "pending" : "paid",
@@ -278,7 +272,7 @@ export function Cart() {
                         className={`rounded-2xl border p-3 text-left transition ${
                           deliveryType === option.value
                             ? "border-orange-500 bg-orange-50"
-                            : "border-gray-200"
+                            : "border-gray-200 hover:bg-gray-50"
                         }`}
                       >
                         <Icon className="w-4 h-4 mb-2" />
@@ -300,13 +294,11 @@ export function Cart() {
                   />
                 </div>
               ) : (
-                <div>
-                  <Label>Live Location</Label>
-                  <Input
-                    value={liveLocation}
-                    onChange={(e) => setLiveLocation(e.target.value)}
-                    placeholder="Paste map link or coordinates"
-                  />
+                <div className="rounded-2xl bg-blue-50/50 p-4 border border-blue-100">
+                  <p className="text-sm text-blue-700 font-medium flex items-center gap-2">
+                    <Smartphone className="w-4 h-4" />
+                    Live location will be tracked automatically
+                  </p>
                 </div>
               )}
 
