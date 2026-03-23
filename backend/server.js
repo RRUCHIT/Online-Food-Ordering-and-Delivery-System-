@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, './.env') });
 
 const connectDB = require("./config/db.js");
 const authRoutes = require("./routes/authRoutes.js");
@@ -12,7 +13,6 @@ const adminRoutes = require("./routes/adminRoutes.js");
 const menuRoutes = require("./routes/menuRoutes");
 const complaintRoutes = require("./routes/complaintRoutes");
 const upload = require('./middleware/uploadMiddleware');
-const path = require("path");
 
 const app = express();
 
@@ -27,6 +27,12 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+// Request logger
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/orders", orderRoutes);

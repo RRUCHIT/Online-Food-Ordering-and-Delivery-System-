@@ -1,5 +1,8 @@
 import { useMemo, useState } from "react";
-import { User, MapPin, CreditCard, Bell, Save, Plus, Pencil } from "lucide-react";
+import { User, MapPin, CreditCard, Bell, Save, Plus, Pencil, Lock } from "lucide-react";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+import API from "../../api/axios";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../components/ui/card";
 import { Input } from "../../components/ui/input";
 import { Label } from "../../components/ui/label";
@@ -47,7 +50,7 @@ export function Profile() {
     readStorage(storageKey, {
       name: currentUser?.name || "Customer",
       email: currentUser?.email || "",
-      phone: "",
+      phone: currentUser?.phone || "",
       address: "",
     })
   );
@@ -73,6 +76,43 @@ export function Profile() {
   const [editingPaymentId, setEditingPaymentId] = useState(null);
   const [paymentForm, setPaymentForm] = useState(emptyPaymentForm);
 
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: ""
+  });
+  const [passwordLoading, setPasswordLoading] = useState(false);
+
+  const handlePasswordChange = async (e) => {
+    e.preventDefault();
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      toast.error("New passwords do not match");
+      return;
+    }
+    if (passwordForm.newPassword.length < 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+
+    setPasswordLoading(true);
+    try {
+      await API.post("/api/auth/change-password", {
+        currentPassword: passwordForm.currentPassword,
+        newPassword: passwordForm.newPassword
+      });
+      toast.success("Password changed successfully");
+      setPasswordForm({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: ""
+      });
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to change password");
+    } finally {
+      setPasswordLoading(false);
+    }
+  };
+
   const persistProfile = (nextProfile) => {
     setProfile(nextProfile);
     localStorage.setItem(storageKey, JSON.stringify(nextProfile));
@@ -83,9 +123,27 @@ export function Profile() {
     localStorage.setItem(paymentStorageKey, JSON.stringify(nextMethods));
   };
 
-  const handleSaveProfile = () => {
-    persistProfile(profile);
-    toast.success("Profile updated successfully!");
+  const handleSaveProfile = async () => {
+    try {
+      const res = await API.put("/api/auth/update-profile", {
+        name: profile.name,
+        email: profile.email,
+        phone: profile.phone,
+        address: profile.address
+      });
+      
+      // Update local state and localStorage
+      persistProfile(profile);
+      
+      // Update the user in localStorage so other components get the latest data
+      const updatedUser = res.data.user;
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      window.dispatchEvent(new Event("foodhub-auth-changed"));
+      
+      toast.success("Profile updated successfully!");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update profile");
+    }
   };
 
   const handleSaveNotifications = () => {
@@ -181,10 +239,13 @@ export function Profile() {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone Number</Label>
-                <Input
-                  id="phone"
+                <PhoneInput
+                  international
+                  defaultCountry="IN"
+                  placeholder="Enter phone number"
                   value={profile.phone}
-                  onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+                  onChange={(value) => setProfile({ ...profile, phone: value })}
+                  className="input"
                 />
               </div>
             </div>
@@ -357,6 +418,60 @@ export function Profile() {
               <Save className="w-4 h-4 mr-2" />
               Save Preferences
             </Button>
+          </CardContent>
+        </Card>
+
+        <Card className="glass-panel rounded-[1.75rem]">
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Lock className="w-5 h-5" />
+              <CardTitle>Change Password</CardTitle>
+            </div>
+            <CardDescription>Update your account security</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handlePasswordChange} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="currentPassword">Current Password</Label>
+                <Input
+                  id="currentPassword"
+                  type="password"
+                  value={passwordForm.currentPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, currentPassword: e.target.value })}
+                  placeholder="Enter current password"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="newPassword">New Password</Label>
+                <Input
+                  id="newPassword"
+                  type="password"
+                  value={passwordForm.newPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, newPassword: e.target.value })}
+                  placeholder="Enter new password"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword">Confirm New Password</Label>
+                <Input
+                  id="confirmPassword"
+                  type="password"
+                  value={passwordForm.confirmPassword}
+                  onChange={(e) => setPasswordForm({ ...passwordForm, confirmPassword: e.target.value })}
+                  placeholder="Confirm new password"
+                  required
+                />
+              </div>
+              <Button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 w-full md:w-auto"
+                disabled={passwordLoading}
+              >
+                {passwordLoading ? "Updating..." : "Update Password"}
+              </Button>
+            </form>
           </CardContent>
         </Card>
       </div>

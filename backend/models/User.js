@@ -22,8 +22,15 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ["customer", "restaurant", "admin"],
     default: "customer"
-  }
-
+  },
+  phone: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
+  address: String,
+  otp: String,
+  otpExpiry: Date
 });
 
 module.exports = mongoose.model("User", userSchema);

@@ -126,6 +126,14 @@ export function Login() {
                   className="rounded-2xl h-12 bg-slate-50 border-slate-100"
                   required
                 />
+                <div className="flex justify-end pt-1">
+                  <Link
+                    to="/forgot-password"
+                    className="text-sm font-bold text-rose-600 hover:text-rose-700 transition-colors"
+                  >
+                    Forgot password?
+                  </Link>
+                </div>
               </div>
 
               <Button

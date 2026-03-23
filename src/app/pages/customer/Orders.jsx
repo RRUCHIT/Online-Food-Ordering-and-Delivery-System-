@@ -16,6 +16,7 @@ import {
 } from "../../components/ui/dialog";
 import { useApp } from "../../context/AppContext";
 import { toast } from "sonner";
+import { MapTracker } from "../../components/ui/map-tracker";
 
 const steps = [
   "pending",

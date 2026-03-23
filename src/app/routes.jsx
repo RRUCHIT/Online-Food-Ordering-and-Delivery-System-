@@ -3,6 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage.jsx";
 import { Login } from "./pages/Login.jsx";
 import { Register } from "./pages/Register.jsx";
+import { ForgotPassword } from "./pages/ForgotPassword.jsx";
+import { VerifyOTP } from "./pages/VerifyOTP.jsx";
+import { ResetPassword } from "./pages/ResetPassword.jsx";
 import { CustomerLayout } from "./layouts/CustomerLayout.jsx";
 import { CustomerHome } from "./pages/customer/CustomerHome.jsx";
 import { Cart } from "./pages/customer/Cart.jsx";
@@ -28,6 +31,9 @@ function AppRoutes() {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/verify-otp" element={<VerifyOTP />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
 
       <Route path="/customer" element={<CustomerLayout />}>
         <Route index element={<CustomerHome />} />

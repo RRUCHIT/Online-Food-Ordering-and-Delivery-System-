@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../api/axios";
 import { UtensilsCrossed, ArrowRight, Store } from "lucide-react";
+import PhoneInput from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -223,6 +225,18 @@ export function Register() {
                     required
                   />
                 </div>
+
+                <div className="space-y-2">
+                  <Label>Phone Number</Label>
+                  <PhoneInput
+                    international
+                    defaultCountry="IN"
+                    placeholder="Enter phone number"
+                    value={formData.phone}
+                    onChange={(value) => setFormData({ ...formData, phone: value })}
+                    className="input"
+                  />
+                </div>
               </div>
 
               {isRestaurant && (
@@ -279,25 +293,23 @@ export function Register() {
 
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label>Phone</Label>
-                      <Input
-                        placeholder="+91 98765 43210"
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="rounded-2xl h-12 bg-white border-orange-100"
-                        required={isRestaurant}
-                      />
-                    </div>
-
-                    <div className="space-y-2">
                       <Label>Delivery Time</Label>
                       <Input
                         placeholder="30-40 min"
                         value={formData.deliveryTime}
                         onChange={(e) =>
                           setFormData({ ...formData, deliveryTime: e.target.value })
+                        }
+                        className="rounded-2xl h-12 bg-white border-orange-100"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label>Restaurant Image URL</Label>
+                      <Input
+                        placeholder="https://..."
+                        value={formData.image}
+                        onChange={(e) =>
+                          setFormData({ ...formData, image: e.target.value })
                         }
                         className="rounded-2xl h-12 bg-white border-orange-100"
                       />
