@@ -80,7 +80,12 @@
   },
   "optionalDependencies": {
     "@rollup/rollup-linux-x64-gnu": "4.24.4",
-    "lightningcss-linux-x64-gnu": "1.29.1"
+    "@rollup/rollup-linux-x64-musl": "4.24.4",
+    "lightningcss-linux-x64-gnu": "1.29.1",
+    "lightningcss-linux-x64-musl": "1.29.1",
+    "@tailwindcss/oxide-linux-x64-gnu": "4.1.12",
+    "@tailwindcss/oxide-linux-x64-musl": "4.1.12",
+    "fsevents": "^2.3.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "4.1.12",
