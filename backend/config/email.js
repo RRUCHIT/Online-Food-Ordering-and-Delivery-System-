@@ -7,20 +7,26 @@ if (dns.setDefaultResultOrder) {
 }
 
 const sendEmail = async (options) => {
-  // Use port 587 with STARTTLS for better compatibility in cloud environments like Render
+  // Use port 587 with STARTTLS for best compatibility on Render/Cloud
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: True, // false for 587, true for 465
+    port: 587,
+    secure: false, // Must be false for port 587
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
     // Force IPv4 at the connection level
     family: 4,
+    tls: {
+      // Do not fail on invalid certs
+      rejectUnauthorized: false,
+      // Force IPv4 for the socket as well
+      family: 4
+    },
     connectionTimeout: 20000,
     greetingTimeout: 20000,
-    socketTimeout: 20000,
+    socketTimeout: 25000,
   });
 
   const mailOptions = {
@@ -39,7 +45,8 @@ const sendEmail = async (options) => {
     console.log("Email sent successfully: %s", info.messageId);
     return info;
   } catch (error) {
-    console.error("Detailed Email Error:", error);
+    console.error("Detailed Email Error:", error.message);
+    // If it still fails, try a fallback to service: 'gmail' logic but with IPv4 forced
     throw error;
   }
 };
