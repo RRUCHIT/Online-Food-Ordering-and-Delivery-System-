@@ -10,21 +10,17 @@ const sendEmail = async (options) => {
   // Use port 587 with STARTTLS for better compatibility in cloud environments like Render
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // false for 587, true for 465
+    port: 465,
+    secure: True, // false for 587, true for 465
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
     // Force IPv4 at the connection level
     family: 4,
-    tls: {
-      // Do not fail on invalid certs
-      rejectUnauthorized: false,
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
+    connectionTimeout: 20000,
+    greetingTimeout: 20000,
+    socketTimeout: 20000,
   });
 
   const mailOptions = {
@@ -33,7 +29,7 @@ const sendEmail = async (options) => {
     subject: options.subject,
     text: options.message,
     html: options.html,
-  };
+  };  
 
   try {
     // Verify connection configuration
