@@ -16,13 +16,17 @@ const sendEmail = async (options) => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    // Force IPv4 at the connection level
-    family: 4,
+    // Force IPv4 by providing a custom lookup function
+    lookup: (hostname, opts, callback) => {
+      dns.lookup(hostname, { family: 4 }, (err, address, family) => {
+        callback(err, address, family);
+      });
+    },
     tls: {
       // Do not fail on invalid certs
       rejectUnauthorized: false,
-      // Force IPv4 for the socket as well
-      family: 4
+      // Some servers require this for STARTTLS
+      minVersion: 'TLSv1.2'
     },
     connectionTimeout: 20000,
     greetingTimeout: 20000,
