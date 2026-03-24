@@ -7,18 +7,24 @@ if (dns.setDefaultResultOrder) {
 }
 
 const sendEmail = async (options) => {
-  // Use 'service: gmail' - Nodemailer's preferred way for Gmail
-  // It handles the host/port/TLS logic automatically
+  // Use manual configuration to strictly control Port and IP Family
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Must be false for port 587
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-    // Keep timeouts high for Render's environment
-    connectionTimeout: 40000,
-    greetingTimeout: 40000,
-    socketTimeout: 40000,
+    // STRICTLY FORCE IPv4
+    family: 4,
+    tls: {
+      rejectUnauthorized: false,
+      minVersion: 'TLSv1.2'
+    },
+    connectionTimeout: 20000,
+    greetingTimeout: 20000,
+    socketTimeout: 20000,
   });
 
   const mailOptions = {
