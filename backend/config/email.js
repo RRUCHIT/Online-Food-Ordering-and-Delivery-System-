@@ -4,6 +4,7 @@ const dns = require('dns');
 // Force Node.js to prefer IPv4 over IPv6 to prevent ENETUNREACH errors on cloud platforms like Render
 if (dns.setDefaultResultOrder) {
   dns.setDefaultResultOrder('ipv4first');
+  dns.setServers(["8.8.8.8", "8.8.4.4"]); 
 }
 
 const sendEmail = async (options) => {
@@ -43,7 +44,7 @@ const sendEmail = async (options) => {
 
   try {
     // Verify connection configuration
-    await transporter.verify();
+    // await transporter.verify();
     // Send email
     const info = await transporter.sendMail(mailOptions);
     console.log("Email sent successfully: %s", info.messageId);
