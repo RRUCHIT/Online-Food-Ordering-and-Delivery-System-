@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const path = require("path");
+const fs = require("fs");
 
 dotenv.config({ path: path.resolve(__dirname, './.env') });
 
@@ -15,6 +16,13 @@ const complaintRoutes = require("./routes/complaintRoutes");
 const upload = require('./middleware/uploadMiddleware');
 
 const app = express();
+
+// Ensure uploads directory exists
+const uploadDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+    console.log('Created uploads directory');
+}
 
 connectDB();
 
