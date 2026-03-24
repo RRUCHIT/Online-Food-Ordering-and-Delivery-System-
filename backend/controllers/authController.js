@@ -198,33 +198,29 @@ exports.forgotPassword = async (req, res) => {
     const { EMAIL_USER, EMAIL_PASS } = process.env;
 
     if (EMAIL_USER && EMAIL_PASS) {
-      try {
-        console.log(`Attempting to send email to ${user.email}...`);
-        await sendEmail({
-          email: user.email,
-          subject: "Password Reset OTP - FoodHub",
-          message: `Your FoodHub verification code is: ${otp}`,
-          html: `
-            <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
-              <h2 style="color: #f43f5e;">FoodHub Password Reset</h2>
-              <p>Hello ${user.name},</p>
-              <p>You requested a password reset. Use the OTP below to verify your request. This code is valid for 5 minutes.</p>
-              <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #f43f5e; border-radius: 8px;">
-                ${otp}
-              </div>
-              <p>If you didn't request this, please ignore this email.</p>
-              <p>Best regards,<br/>FoodHub Team</p>
+      // Send email in the background without 'await' to prevent frontend timeouts
+      sendEmail({
+        email: user.email,
+        subject: "Password Reset OTP - FoodHub",
+        message: `Your FoodHub verification code is: ${otp}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+            <h2 style="color: #f43f5e;">FoodHub Password Reset</h2>
+            <p>Hello ${user.name},</p>
+            <p>You requested a password reset. Use the OTP below to verify your request. This code is valid for 5 minutes.</p>
+            <div style="background: #f1f5f9; padding: 15px; text-align: center; font-size: 24px; font-weight: bold; letter-spacing: 5px; color: #f43f5e; border-radius: 8px;">
+              ${otp}
             </div>
-          `,
-        });
-        console.log(`Email sent to ${user.email}`);
-      } catch (emailError) {
-        console.error("Email Error:", emailError.message);
-        // Fallback to console log if Email fails
-        console.log(`OTP for ${user.email}: ${otp} (Email failed)`);
-      }
+            <p>If you didn't request this, please ignore this email.</p>
+            <p>Best regards,<br/>FoodHub Team</p>
+          </div>
+        `,
+      }).then(() => {
+        console.log(`Email sent successfully to ${user.email}`);
+      }).catch((emailError) => {
+        console.error("Background Email Error:", emailError.message);
+      });
     } else {
-      // Fallback for development if Email config is not set
       console.log(`OTP for ${user.email}: ${otp} (Email not configured)`);
     }
 
